@@ -1,0 +1,13 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# User specific aliases and functions
+export HADOOP_MAPRED_HOME=/usr/lib/hadoop-mapreduce
+export HIVE_HOME=/opt/hive/hive
+export JAVA_HOME=<%= @java_home %>
+export HADOOP_HOME="/usr/lib/hadoop"
+export PATH=$PATH:$HADOOP_HOME/bin:$HIVE_HOME/bin

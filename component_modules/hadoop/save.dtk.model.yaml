@@ -1,0 +1,149 @@
+---
+module: hadoop
+dsl_version: '0.9'
+module_type: puppet_module
+components:
+  datanode:
+    external_ref:
+      puppet_class: hadoop::datanode
+    attributes:
+      ha:
+        type: string
+        default: disabled
+      port:
+        type: string
+        default: '50075'
+      auth:
+        type: string
+        default: simple
+      namenode_port:
+        type: string
+      namenode_host:
+        type: string
+      dirs:
+        type: string
+    depends_on:
+    - bigtop_base
+    - namenode_conn:
+        choices:
+          - component: hadoop::namenode
+            location: remote
+            attribute_mappings:
+            - $node.host_address -> namenode_host
+            - $port -> namenode_port
+          - component: hadoop::namenode
+            location: local
+            attribute_mappings:
+            - $node.host_address -> namenode_host
+            - $port -> namenode_port
+  nodemanager:
+    external_ref:
+      puppet_class: hadoop::nodemanager
+    attributes:
+      rm_host:
+        type: string
+      rm_port:
+        type: string
+      rt_port:
+        type: string
+      auth:
+        type: string
+        default: simple
+    depends_on:
+    - bigtop_base
+    - resourcemanager_conn:
+        choices:
+          - component: hadoop::resourcemanager
+            location: remote
+            attribute_mappings:
+            - $node.host_address -> rm_host
+            - $port -> rm_port
+            - $rt_port -> rt_port
+          - component: hadoop::resourcemanager
+            location: local
+            attribute_mappings:
+            - $node.host_address -> rm_host
+            - $port -> rm_port
+            - $rt_port -> rt_port
+  client:
+    external_ref:
+      puppet_class: hadoop::client
+    attributes:
+      auth:
+        type: string
+        default: simple
+      namenode_port:
+        type: string
+      namenode_host:
+        type: string
+    depends_on:
+    - bigtop_base
+    - namenode_conn:
+        component: hadoop::namenode
+        location: remote
+        attribute_mappings:
+        - $node.host_address -> namenode_host
+        - $port -> namenode_port
+  namenode:
+    external_ref:
+      puppet_class: hadoop::namenode
+    attributes:
+      ha:
+        type: string
+        default: disabled
+      port:
+        type: string
+        default: '8020'
+      host:
+        type: string
+        external_ref:
+          default_variable: $fqdn
+      auth:
+        type: string
+        default: simple
+      zk:
+        type: string
+        default: ''
+      thrift_port:
+        type: string
+        default: '10090'
+      dirs:
+        type: string
+    depends_on:
+    - bigtop_base
+  resourcemanager:
+    external_ref:
+      puppet_class: hadoop::resourcemanager
+    attributes:
+      rt_port:
+        type: string
+        default: '8025'
+      port:
+        type: string
+        default: '8040'
+      auth:
+        type: string
+        default: simple
+      sc_port:
+        type: string
+        default: '8030'
+      thrift_port:
+        type: string
+        default: '9290'
+    depends_on:
+    - hadoop::namenode
+  historyserver:
+    external_ref:
+      puppet_class: hadoop::historyserver
+    attributes:
+      port:
+        type: string
+        default: '10020'
+      webapp_port:
+        type: string
+        default: '19888'
+      auth:
+        type: string
+        default: simple
+
+

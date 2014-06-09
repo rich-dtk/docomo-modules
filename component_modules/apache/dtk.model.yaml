@@ -1,0 +1,39 @@
+---
+module: apache
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  vhost:
+    external_ref:
+      puppet_definition: apache::vhost
+    attributes:
+      name:
+        type: string
+        required: true
+      docroot:
+        type: string
+        required: true
+      virtual_docroot:
+        type: boolean
+      port:
+        type: string
+  apache:
+    external_ref:
+      puppet_class: apache
+    attributes:
+      servername:
+        type: string
+      purge_configs:
+        type: string
+      use_canonical_name:
+        type: string
+    link_defs:
+      apache::base:
+        attribute_mappings:
+        - $node.host_address -> servername
+  base:
+    external_ref:
+      puppet_class: apache::base
+includes:
+- concat
+- stdlib

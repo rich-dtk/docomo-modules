@@ -1,0 +1,114 @@
+---
+module: archive
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  tar_gz:
+    external_ref:
+      puppet_definition: archive::tar_gz
+    attributes:
+      name:
+        type: string
+        required: true
+      source:
+        type: string
+        required: true
+      target:
+        type: string
+        required: true
+  download:
+    external_ref:
+      puppet_definition: archive::download
+    attributes:
+      name:
+        type: string
+        required: true
+      url:
+        type: string
+        required: true
+      ensure:
+        type: string
+      checksum:
+        type: boolean
+      digest_url:
+        type: string
+      digest_string:
+        type: string
+      digest_type:
+        type: string
+      timeout:
+        type: string
+      src_target:
+        type: string
+      allow_insecure:
+        type: boolean
+      follow_redirects:
+        type: boolean
+  extract:
+    external_ref:
+      puppet_definition: archive::extract
+    attributes:
+      name:
+        type: string
+        required: true
+      target:
+        type: string
+        required: true
+      ensure:
+        type: string
+      src_target:
+        type: string
+      root_dir:
+        type: string
+      extension:
+        type: string
+      timeout:
+        type: string
+  archive:
+    external_ref:
+      puppet_definition: archive
+    attributes:
+      name:
+        type: string
+        required: true
+      url:
+        type: string
+        required: true
+      target:
+        type: string
+        required: true
+      ensure:
+        type: string
+      checksum:
+        type: boolean
+      digest_url:
+        type: string
+      digest_string:
+        type: string
+      digest_type:
+        type: string
+      timeout:
+        type: string
+      root_dir:
+        type: string
+      extension:
+        type: string
+      src_target:
+        type: string
+      allow_insecure:
+        type: boolean
+      follow_redirects:
+        type: boolean
+  zip:
+    external_ref:
+      puppet_definition: archive::zip
+    attributes:
+      name:
+        type: string
+        required: true
+      source:
+        type: string
+        required: true
+      target:
+        type: string
+        required: true

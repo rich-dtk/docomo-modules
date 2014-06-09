@@ -1,0 +1,18 @@
+---
+module: hadoop_tez
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  hadoop_tez:
+    external_ref:
+      puppet_class: hadoop_tez
+    attributes:
+      version:
+        type: string
+    dependencies:
+    - bigtop_base
+    - hadoop::resourcemanager
+    link_defs:
+      bigtop_base:
+        attribute_mappings:
+          - mapred_framework <- 'yarn-tez'

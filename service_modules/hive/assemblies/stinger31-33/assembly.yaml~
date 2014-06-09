@@ -1,0 +1,83 @@
+---
+name: stinger31-40
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - mysql::server:
+          attributes:
+            root_password: hive545
+      - hadoop::namenode
+      - hadoop::resourcemanager
+      - hadoop::historyserver
+      - hive:
+          attributes:
+            version: 0.13.0
+      - bigtop_base
+      - base
+    slave32:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave33:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: base
+    nodes: All_applicable
+    ordered_components:
+    - base
+  - name: initialize
+    nodes: All_applicable
+    ordered_components:
+    - bigtop_base
+  - name: master hdfs
+    node: master
+    ordered_components:
+    - hadoop::namenode
+  - name: slaves hdfs
+    nodes: All_applicable
+    ordered_components:
+    - hadoop::datanode
+  - name: master yarn
+    node: master
+    ordered_components:
+    - hadoop::resourcemanager
+    - hadoop::historyserver
+  - name: slaves yarn
+    nodes: All_applicable
+    ordered_components:
+    - hadoop::nodemanager
+  - name: stage_mysql::server
+    node: master
+    ordered_components:
+    - mysql::server
+  - name: stage_hive
+    node: master
+    ordered_components:
+    - hive

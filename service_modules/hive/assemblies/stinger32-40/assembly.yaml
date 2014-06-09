@@ -1,0 +1,142 @@
+---
+name: stinger32-40
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::namenode
+      - hadoop::resourcemanager
+      - hadoop::historyserver
+    slave32:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave33:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave34:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave35:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave36:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave37:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave38:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave39:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+    slave40:
+      attributes:
+        puppet_version: 2.7.25
+      components:
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+      - base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+      - bigtop_base
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: base
+    nodes: All_applicable
+    ordered_components:
+    - base
+  - name: initialize
+    nodes: All_applicable
+    ordered_components:
+    - bigtop_base
+  - name: slaves hdfs
+    nodes: All_applicable
+    ordered_components:
+    - hadoop::datanode
+  - name: slaves yarn
+    nodes: All_applicable
+    ordered_components:
+    - hadoop::nodemanager

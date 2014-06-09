@@ -1,0 +1,228 @@
+---
+name: gmond101-142
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    ganglia:
+      components:
+      - ganglia::gmond_reciever
+    slave101:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave102:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave103:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave104:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave105:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave106:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave107:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave108:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave109:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave110:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave111:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave112:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave113:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave114:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave115:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave116:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave117:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave118:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave119:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave120:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave121:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave122:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave123:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave124:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave125:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave126:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave127:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave128:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave129:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave130:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave131:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave132:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave133:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave134:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave135:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave136:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave137:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave138:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave139:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave140:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave141:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave142:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: ganglia_sender
+    nodes: All_applicable
+    ordered_components:
+    - ganglia::gmond_sender

@@ -1,0 +1,21 @@
+---
+name: tez
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      components:
+      - bigtop_base
+      - hadoop::resourcemanager
+      - hadoop_tez:
+          component_links:
+            bigtop_base: master/bigtop_base
+workflow:
+  assembly_action: create
+  node: master
+  components:
+  - bigtop_base
+  - hadoop::resourcemanager
+  - hadoop_tez

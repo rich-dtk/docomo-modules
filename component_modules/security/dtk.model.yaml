@@ -1,0 +1,27 @@
+---
+module: security
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  selinux:
+    external_ref:
+      puppet_class: security::selinux
+    attributes:
+      'on':
+        type: array
+      'off':
+        type: array
+  iptables:
+    external_ref:
+      puppet_class: security::iptables
+    attributes:
+      'on':
+        type: array
+      'off':
+        type: array
+      deny_ports:
+        type: array
+      allow_ports:
+        type: array
+includes:
+- iptables

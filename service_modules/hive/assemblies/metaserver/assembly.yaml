@@ -1,0 +1,25 @@
+---
+name: metaserver
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      components:
+      - mysql::server:
+          attributes:
+            root_password: hive545
+      - hive
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: stage_mysql::server
+    node: master
+    ordered_components:
+    - mysql::server
+  - name: stage_hive
+    node: master
+    ordered_components:
+    - hive

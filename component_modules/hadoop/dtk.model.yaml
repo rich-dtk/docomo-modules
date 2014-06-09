@@ -1,0 +1,118 @@
+---
+module: hadoop
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  datanode:
+    external_ref:
+      puppet_class: hadoop::datanode
+    attributes:
+      ha:
+        type: string
+        default: disabled
+      port:
+        type: port
+        default: 50075
+      auth:
+        type: string
+        default: simple
+      namenode_port:
+        type: port
+      namenode_host:
+        type: string
+      dirs:
+        type: array
+    dependencies:
+    - bigtop_base
+    - namenode_conn:
+        choices:
+          - component: hadoop::namenode
+            location: remote
+          - component: hadoop::namenode
+            location: local
+    link_defs:
+      hadoop::namenode:
+        attribute_mappings:
+          - $node.host_address -> namenode_host
+          - $port -> namenode_port
+  namenode:
+    external_ref:
+      puppet_class: hadoop::namenode
+    attributes:
+      ha:
+        type: string
+        default: disabled
+      port:
+        type: port
+        default: 8020
+      auth:
+        type: string
+        default: simple
+      thrift_port:
+        type: port
+        default: 10090
+      dirs:
+        type: array
+    depends_on:
+    - bigtop_base
+  nodemanager:
+    external_ref:
+      puppet_class: hadoop::nodemanager
+    attributes:
+      rm_host:
+        type: string
+      rm_port:
+        type: port
+      rt_port:
+        type: port
+      auth:
+        type: string
+        default: simple
+    dependencies:
+    - bigtop_base
+    - resourcemanager_conn:
+        choices:
+          - component: hadoop::resourcemanager
+            location: remote
+          - component: hadoop::resourcemanager
+            location: local
+    link_defs:
+      hadoop::resourcemanager:
+        attribute_mappings:
+          - $node.host_address -> rm_host
+          - $port -> rm_port
+          - $rt_port -> rt_port
+  resourcemanager:
+    external_ref:
+      puppet_class: hadoop::resourcemanager
+    attributes:
+      rt_port:
+        type: port
+        default: 8025
+      port:
+        type: port
+        default: 8050
+      auth:
+        type: string
+        default: simple
+      sc_port:
+        type: port
+        default: 8030
+      thrift_port:
+        type: port
+        default: 9290
+    depends_on:
+    - hadoop::namenode
+  historyserver:
+    external_ref:
+      puppet_class: hadoop::historyserver
+    attributes:
+      port:
+        type: port
+        default: 10020
+      webapp_port:
+        type: port
+        default: 19888
+      auth:
+        type: string
+        default: simple

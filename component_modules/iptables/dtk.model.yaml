@@ -1,0 +1,27 @@
+---
+module: iptables
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  drop:
+    external_ref:
+      puppet_definition: iptables::drop
+    attributes:
+      name:
+        type: string
+        required: true
+      port:
+        type: string
+      protocol:
+        type: string
+  allow:
+    external_ref:
+      puppet_definition: iptables::allow
+    attributes:
+      name:
+        type: string
+        required: true
+      port:
+        type: string
+      protocol:
+        type: string

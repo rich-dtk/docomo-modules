@@ -1,0 +1,22 @@
+---
+name: resourcemanager
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      components:
+      - bigtop_base
+      - hadoop::resourcemanager
+      - hadoop::historyserver
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: master yarn
+    node: master
+    ordered_components:
+    - bigtop_base
+    - hadoop::resourcemanager
+    - hadoop::historyserver

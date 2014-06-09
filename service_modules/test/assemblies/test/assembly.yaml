@@ -1,0 +1,40 @@
+---
+name: test
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    ganglia:
+      components:
+      - ganglia::gmond_reciever
+    master:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+      - ganglia::python_modules
+    slave43:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+      - ganglia::python_modules
+    slave44:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+      - ganglia::python_modules
+    slave45:
+      components:
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+      - ganglia::python_modules
+workflow:
+  assembly_action: create
+  node: slave45
+  components:
+  - ganglia::gmond_sender
+  - ganglia::python_modules

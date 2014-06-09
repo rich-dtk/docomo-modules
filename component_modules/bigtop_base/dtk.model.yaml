@@ -1,0 +1,25 @@
+---
+module: bigtop_base
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  bigtop_base:
+    external_ref:
+      puppet_class: bigtop_base
+    attributes:
+      include_java_dev_tools:
+        type: string
+      java_home:
+        type: string
+        description: if specified overrides what is used for java home
+      mapred_framework:
+        type: string
+    link_defs:
+      java:
+        attribute_mappings:
+          - $java_home -> java_home
+    includes:
+    - stdlib
+    - java
+    - archive
+

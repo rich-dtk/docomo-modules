@@ -1,0 +1,8 @@
+CREATE USER 'hive'@'localhost' IDENTIFIED BY '<%= @metastore_password %>';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'hive'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE,LOCK TABLES,EXECUTE ON metastore.* TO 'hive'@'localhost';
+FLUSH PRIVILEGES;
+CREATE DATABASE metastore;
+USE metastore;
+SOURCE /opt/hive/hive-<%= @version %>/scripts/metastore/upgrade/mysql/hive-schema-<%= @version %>.mysql.sql;
+

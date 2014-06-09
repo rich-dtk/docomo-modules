@@ -1,0 +1,187 @@
+---
+name: datanodes43-70
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      components:
+      - bigtop_base
+      - hadoop::namenode
+    slave43:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave44:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave45:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave46:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave47:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave48:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave49:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave50:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave51:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave52:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave53:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave54:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave55:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave56:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave57:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave58:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave59:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave60:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave61:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave62:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave63:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave64:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave65:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave66:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave67:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave68:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave69:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+    slave70:
+      components:
+      - bigtop_base
+      - hadoop::datanode:
+          component_links:
+            namenode_conn: master/hadoop::namenode
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: slaves hdfs
+    nodes: All_applicable
+    ordered_components:
+    - hadoop::datanode

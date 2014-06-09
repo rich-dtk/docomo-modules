@@ -1,0 +1,65 @@
+---
+module: concat
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  concat:
+    external_ref:
+      puppet_definition: concat
+    attributes:
+      name:
+        type: string
+        required: true
+      ensure:
+        type: string
+      path:
+        type: string
+      owner:
+        type: string
+      group:
+        type: string
+      mode:
+        type: string
+      warn:
+        type: boolean
+      force:
+        type: boolean
+      backup:
+        type: string
+      replace:
+        type: boolean
+      order:
+        type: string
+      ensure_newline:
+        type: boolean
+      gnu:
+        type: string
+  fragment:
+    external_ref:
+      puppet_definition: concat::fragment
+    attributes:
+      name:
+        type: string
+        required: true
+      target:
+        type: string
+        required: true
+      content:
+        type: string
+      source:
+        type: string
+      order:
+        type: string
+      ensure:
+        type: string
+      mode:
+        type: string
+      owner:
+        type: string
+      group:
+        type: string
+      backup:
+        type: string
+  setup:
+    external_ref:
+      puppet_class: concat::setup

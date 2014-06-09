@@ -1,0 +1,41 @@
+---
+name: server
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    ganglia:
+      components:
+      - base
+      - ganglia::gmetad
+      - security::selinux
+      - ganglia::gmond_reciever
+      - ganglia::web:
+          component_links:
+            security::selinux: ganglia/security::selinux
+      - apache:
+          attributes:
+            purge_configs: false
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: base
+    nodes: All_applicable
+    ordered_components:
+    - base
+  - name: security
+    nodes: All_applicable
+    ordered_components:
+    - security::selinux
+  - name: ganglia_server
+    node: ganglia
+    ordered_components:
+    - ganglia::gmetad
+    - ganglia::gmond_reciever
+    - ganglia::web
+  - name: apache
+    node: ganglia
+    ordered_components:
+    - apache

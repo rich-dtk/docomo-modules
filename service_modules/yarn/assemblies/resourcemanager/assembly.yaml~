@@ -1,0 +1,197 @@
+---
+name: yarn41-70
+dsl_version: 0.9.1
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    master:
+      components:
+      - bigtop_base
+      - hadoop::resourcemanager
+      - hadoop::historyserver
+    slave43:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave44:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave45:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave46:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave47:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave48:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave49:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave50:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave51:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave52:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave53:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave54:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave55:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave56:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave57:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave58:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave59:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave60:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave61:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave62:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave63:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave64:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave65:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave66:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave67:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave68:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave69:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+    slave70:
+      components:
+      - bigtop_base
+      - hadoop::nodemanager:
+          component_links:
+            resourcemanager_conn: master/hadoop::resourcemanager
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: bigtop_base
+    nodes: All_applicable
+    ordered_components:
+    - bigtop_base
+  - name: master yarn
+    node: master
+    ordered_components:
+    - hadoop::resourcemanager
+    - hadoop::historyserver
+  - name: slaves yarn
+    nodes: All_applicable
+    ordered_components:
+    - hadoop::nodemanager

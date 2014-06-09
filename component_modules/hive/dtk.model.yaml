@@ -1,0 +1,14 @@
+---
+module: hive
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  cluster:
+    external_ref:
+      puppet_class: hive::cluster
+  hive:
+    external_ref:
+      puppet_class: hive
+    attributes:
+      version:
+        type: string

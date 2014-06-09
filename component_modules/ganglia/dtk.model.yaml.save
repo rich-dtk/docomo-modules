@@ -1,0 +1,84 @@
+---
+module: ganglia
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  gmetad:
+    external_ref:
+      puppet_class: ganglia::gmetad
+    attributes:
+      clusters:
+        type: array
+      gridname:
+        type: string
+  gmond_sender:
+    external_ref:
+      puppet_class: ganglia::gmond
+    attributes:
+      reciever_host:
+        type: string
+      cluster_name:
+        type: string
+      cluster_owner:
+        type: string
+    dependencies:
+    - ganglia::gmond_reciever:
+        choices:
+        - location: remote
+        - location: local
+    link_defs:
+      ganglia::gmond_reciever:
+      - location: remote
+        attribute_mappings:
+        - $node.host_address -> reciever_host
+      - location: local
+        attribute_mappings:
+        - $node.host_address -> reciever_host
+  gmond_reciever:
+    external_ref:
+      puppet_class: ganglia::gmond
+    attributes:
+      cluster_name:
+        type: string
+      cluster_owner:
+        type: string
+      tcp_accept_port:
+        type: integer
+  web:
+    external_ref:
+      puppet_class: ganglia::web
+    attributes:
+      ganglia_ip:
+        type: string
+      ganglia_port:
+        type: string
+      allow_ports:
+        type: array
+        constant: true
+        default:
+        - tcp/80
+        - tcp/443
+    dependencies:
+      security::iptables:
+        location: local
+      security::selinux:
+        location: local
+    link_defs:
+      security::iptables:
+        location: local
+        attribute_mappings:
+        - allow_ports <- $allow_ports
+      security::selinux:
+        location: local
+        attribute_mappings:
+        - off <- true
+includes:
+- stdlib
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

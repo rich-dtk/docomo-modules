@@ -1,0 +1,87 @@
+---
+module: mysql
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  client:
+    external_ref:
+      puppet_class: mysql::client
+    attributes:
+      bindings_enable:
+        type: string
+      package_ensure:
+        type: string
+      package_name:
+        type: string
+  db:
+    external_ref:
+      puppet_definition: mysql::db
+    attributes:
+      name:
+        type: string
+        required: true
+      user:
+        type: string
+        required: true
+      password:
+        type: string
+        required: true
+      dbname:
+        type: string
+  server_backup:
+    external_ref:
+      puppet_class: mysql::server::backup
+    attributes:
+      backupuser:
+        type: string
+        required: true
+      backuppassword:
+        type: string
+        required: true
+      backupdir:
+        type: string
+        required: true
+      backupdirmode:
+        type: string
+      backupdirowner:
+        type: string
+      backupdirgroup:
+        type: string
+      backupcompress:
+        type: boolean
+      backuprotate:
+        type: string
+      ignore_events:
+        type: boolean
+      delete_before_dump:
+        type: boolean
+      backupdatabases:
+        type: array
+      file_per_database:
+        type: boolean
+      ensure:
+        type: string
+      time:
+        type: array
+      postscript:
+        type: boolean
+  server:
+    external_ref:
+      puppet_class: mysql::server
+    attributes:
+      old_root_password:
+        type: string
+      override_options:
+        type: hash
+      root_password:
+        type: string
+      service_enabled:
+        type: string
+      users:
+        type: hash
+      grants:
+        type: hash
+      databases:
+        type: hash
+includes:
+- stdlib

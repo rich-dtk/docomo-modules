@@ -1,0 +1,10 @@
+---
+module: base
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  base:
+    external_ref:
+      puppet_class: base
+    includes:
+    - stdlib

@@ -1,0 +1,15 @@
+---
+name: test1
+dsl_version: 0.9.1
+node_bindings:
+  test1: precise-micro
+assembly:
+  nodes:
+    test1:
+      components:
+      - stdlib
+workflow:
+  assembly_action: create
+  node: test1
+  ordered_components:
+  - stdlib

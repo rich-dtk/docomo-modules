@@ -1,0 +1,79 @@
+---
+name: test1
+dsl_version: 0.9.1
+node_bindings:
+  ganglia: centos6-medium
+  master: centos6-medium
+  slave1: centos6-medium
+  slave2: centos6-medium
+  slave3: centos6-medium
+assembly:
+  attributes:
+    puppet_version: 2.7.25
+  nodes:
+    ganglia:
+      components:
+      - base
+      - ganglia::gmetad
+      - security::selinux
+      - ganglia::gmond_reciever
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+      - ganglia::web:
+          component_links:
+            security::selinux: ganglia/security::selinux
+      - apache:
+          attributes:
+            purge_configs: false
+    master:
+      components:
+      - base
+      - ganglia::gmond_reciever
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave1:
+      components:
+      - base
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave2:
+      components:
+      - base
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+    slave3:
+      components:
+      - base
+      - ganglia::gmond_sender:
+          component_links:
+            ganglia::gmond_reciever: ganglia/ganglia::gmond_reciever
+workflow:
+  assembly_action: create
+  subtask_order: sequential
+  subtasks:
+  - name: base
+    nodes: All_applicable
+    ordered_components:
+    - base
+  - name: security
+    nodes: All_applicable
+    ordered_components:
+    - security::selinux
+  - name: ganglia_server
+    node: ganglia
+    ordered_components:
+    - ganglia::gmetad
+    - ganglia::gmond_reciever
+    - ganglia::web
+  - name: apache
+    node: ganglia
+    ordered_components:
+    - apache
+  - name: ganglia_sender
+    nodes: All_applicable
+    ordered_components:
+    - ganglia::gmond_sender

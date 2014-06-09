@@ -1,0 +1,21 @@
+---
+module: java
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  java:
+    external_ref:
+      puppet_class: java
+    attributes:
+      distribution:
+        type: string
+      version:
+        type: string
+      package:
+        type: string
+      java_alternative:
+        type: string
+      java_alternative_path:
+        type: string
+includes:
+- stdlib
