@@ -1,0 +1,21 @@
+---
+module: spark
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  slave:
+    external_ref:
+      puppet_class: spark::slave
+    attributes:
+      spark_master_host:
+        type: string
+        required: true
+    dependencies:
+    - spark::master
+    link_defs:
+      spark::master:
+        attribute_mappings:
+        - $node.host_address -> spark_master_host
+  master:
+    external_ref:
+      puppet_class: spark::master

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+nohup  <%= @spark_home %>/bin/spark-class org.apache.spark.deploy.worker.Worker spark://<%= @spark_master_host_name %>:7077 > <%= @spark_log_dir %>/worker.log  2>&1 &
+

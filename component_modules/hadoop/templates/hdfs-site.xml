@@ -275,4 +275,10 @@
     <value>true</value>
   </property>
 
+<% (@hdfs_site_custom_vars||{}).each_pair do |name,val|  -%>
+  <property>
+    <name><%= name %></name>
+    <value><%= val %></value>
+  </property>
+<% end -%>
 </configuration>

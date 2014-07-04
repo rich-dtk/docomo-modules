@@ -18,7 +18,8 @@ class bigtop_base(
   $hadoop_yumrepo         = $bigtop_base::params::hadoop_yumrepo,
   $use_yumrepo            = true,
   $include_java_dev_tools = false,
-  $mapred_framework       = $bigtop_base::params::mapred_framework
+  $mapred_framework       = $bigtop_base::params::mapred_framework,
+  $hdfs_site_custom_vars  = {},
 ) inherits bigtop_base::params
 {
   if $use_yumrepo {

@@ -47,11 +47,17 @@ class hive(
     path    => ['/bin','/usr/bin']
   }
   
+  file { "/home/${hive_user}":
+    ensure => 'directory',
+    owner  => $hive_user,
+    group  => $hadoop_group
+  }
   file { "/home/${hive_user}/.bashrc":
-    owner => $hive_user,
-    group => $hadoop_group,
-    mode  => '0644',
-    content => template('hive/bashrc.erb')
+    owner   => $hive_user,
+    group   => $hadoop_group,
+    mode    => '0644',
+    content => template('hive/bashrc.erb'),
+    require => File["/home/${hive_user}"]
   }
 
 	file {"${hive_base}":

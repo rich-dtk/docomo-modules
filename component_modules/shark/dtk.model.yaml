@@ -1,0 +1,10 @@
+---
+module: shark
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  shark:
+    external_ref:
+      puppet_class: shark
+includes:
+- spark

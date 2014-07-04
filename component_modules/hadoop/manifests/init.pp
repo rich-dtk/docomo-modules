@@ -113,8 +113,10 @@ class hadoop {
       fail("High-availability secure clusters are not currently supported")
     }
 
-    include ::hadoop::params
+    include bigtop_base
+    $hdfs_site_custom_vars = $bigtop_base::hdfs_site_custom_vars
 
+    include ::hadoop::params
     $hdfs_user = $::hadoop::params::default_user
     $hdfs_user_group = $::hadoop::params::default_user_group     
     File<|tag == 'hdfs_file'|>{

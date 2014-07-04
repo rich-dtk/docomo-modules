@@ -1,0 +1,42 @@
+---
+module: impala
+dsl_version: 0.9.1
+module_type: puppet_module
+components:
+  catalog_service:
+    external_ref:
+      puppet_class: impala::catalog_service
+  statestore_service:
+    external_ref:
+      puppet_class: impala::statestore_service
+  server:
+    external_ref:
+      puppet_class: impala::server
+    attributes:
+      impala_catalog_host:
+        type: string
+      impala_statestore_host:
+        type: string
+      hdfs_site_custom_vars:
+        type: hash
+        constant: true
+        default:
+          dfs.client.read.shortcircuit: true
+          dfs.datanode.hdfs-blocks-metadata.enabled: true
+          dfs.domain.socket.path: /var/run/hadoop-hdfs/dn._PORT
+          dfs.client.file-block-storage-locations.timeout.millis: 10000
+    dependencies:
+    - bigtop_base
+    - hadoop::datanode
+    - impala::catalog_service
+    - impala::statestore_service
+    link_defs:
+      bigtop_base:
+        attribute_mappings:
+          - hdfs_site_custom_vars <- $hdfs_site_custom_vars
+      impala::catalog_service:
+        attribute_mappings:
+          - $node.host_address -> impala_catalog_host
+      impala::statestore_service:
+        attribute_mappings:
+          - $node.host_address -> impala_statestore_host

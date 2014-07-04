@@ -15,7 +15,7 @@ class hive::params {
  
  	$hadoop_group = $::hostname ? {
          #link to bigtop default
-		default			=> "hdfs",
+		default			=> "hadoop",
 	}
         
 	$java_home = $::hostname ? {

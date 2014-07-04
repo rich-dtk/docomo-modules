@@ -14,6 +14,8 @@ components:
         description: if specified overrides what is used for java home
       mapred_framework:
         type: string
+      hdfs_site_custom_vars:
+        type: hash
     link_defs:
       java:
         attribute_mappings:

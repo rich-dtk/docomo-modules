@@ -1,0 +1,14 @@
+export SPARK_USER_HOME=<%= @spark_user_home %>
+export SPARK_MEM=50g
+export SHARK_MASTER_MEM=30g
+export SCALA_HOME="$SPARK_USER_HOME/scala-2.10.3"
+export HIVE_HOME="/opt/hive/hive"
+export HIVE_CONF_DIR="$HIVE_HOME/conf"
+export HADOOP_HOME="/usr/lib/hadoop"
+export SPARK_HOME="/usr/lib/spark/"
+export MASTER="spark://<%= @spark_master_host %>:7077"
+
+SPARK_JAVA_OPTS=" -Dspark.local.dir=/tmp "
+SPARK_JAVA_OPTS+="-Dspark.kryoserializer.buffer.mb=10 "
+SPARK_JAVA_OPTS+="-verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps "
+export SPARK_JAVA_OPTS

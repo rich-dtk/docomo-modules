@@ -1,0 +1,1 @@
+Assuming that only if impala server do we need to manage teh /etc/default/impala file in non default way
